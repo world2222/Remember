@@ -1,6 +1,10 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    kotlin("kapt")
+    id("com.google.dagger.hilt.android")
+    kotlin("plugin.serialization") version "1.9.20"
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -52,9 +56,9 @@ android {
 dependencies {
 
     implementation("androidx.core:core-ktx:1.12.0")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
-    implementation("androidx.activity:activity-compose:1.8.1")
-    implementation(platform("androidx.compose:compose-bom:2023.08.00"))
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
+    implementation("androidx.activity:activity-compose:1.8.2")
+    implementation(platform("androidx.compose:compose-bom:2024.02.02"))
     implementation("androidx.compose.ui:ui")
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui-tooling-preview")
@@ -62,8 +66,39 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
-    androidTestImplementation(platform("androidx.compose:compose-bom:2023.08.00"))
+    androidTestImplementation(platform("androidx.compose:compose-bom:2024.02.02"))
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
+
+    // Navigation
+    implementation("androidx.navigation:navigation-compose:2.7.7")
+
+    // Dagger - Hilt
+    implementation("com.google.dagger:hilt-android:2.48")
+    kapt("com.google.dagger:hilt-android-compiler:2.47")
+    kapt("androidx.hilt:hilt-compiler:1.2.0")
+    implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
+
+    // Ktor
+    val ktor_version = "2.3.9"
+    implementation("io.ktor:ktor-client-core:$ktor_version")
+    implementation("io.ktor:ktor-client-android:$ktor_version")
+    implementation("io.ktor:ktor-client-content-negotiation:$ktor_version")
+    implementation("io.ktor:ktor-client-logging:$ktor_version")
+    implementation("io.ktor:ktor-serialization-kotlinx-json:$ktor_version")
+
+    // Coil
+    implementation("io.coil-kt:coil-compose:2.5.0")
+
+    // Room
+    val room_version = "2.6.1"
+    implementation("androidx.room:room-ktx:$room_version")
+    ksp("androidx.room:room-compiler:$room_version")
+
+    // Extended Icons
+    implementation("androidx.compose.material:material-icons-extended:1.6.3")
+
+    // observeAsState
+    implementation("androidx.compose.runtime:runtime-livedata:1.6.3")
 }
